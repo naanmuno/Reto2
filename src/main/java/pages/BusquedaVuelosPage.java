@@ -70,7 +70,7 @@ public class BusquedaVuelosPage {
 	   driver.findElement(By.xpath("/html/body/div[4]/div/div[4]/div[5]/div[4]/span[29]")).click();
    }
    
-   public void seleccionarNumeroAdultos() {
+   public void seleccionarNumeroAdultos(String NroAdultos) {
 	   
 	   esperarSegundos(driver, 1);
 	   driver.findElement(By.xpath("//*[@id=\"searchbox-sbox-all-boxes\"]/div[2]/div/div/div[3]/div[2]/div[1]/div[2]/div[2]/div[6]/div[2]/div/input")).click();

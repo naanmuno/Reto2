@@ -1,30 +1,18 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import java.io.File;
-
-import java.io.FileInputStream;
-
-import java.io.FileOutputStream;
-
 import java.io.IOException;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
-import org.apache.poi.ss.usermodel.Cell;
+import herramientas.EscribirExcel;
 
-import org.apache.poi.ss.usermodel.Row;
 
-import org.apache.poi.ss.usermodel.Sheet;
-
-import org.apache.poi.ss.usermodel.Workbook;
-
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ListadoVuelosPage {
 
 	static WebDriver driver;
+	EscribirExcel archivoExcel;
 
 	// CONSTRUCTOR
 	public ListadoVuelosPage(WebDriver driver) {
@@ -42,67 +30,40 @@ public class ListadoVuelosPage {
 		}
 	}
 	
-
-	public void EscribirExcel(String filePath, String fileName, String sheetName, String consulta)
-			throws IOException {
-
+	public void ordenarPorPrecio() {
+		
 		esperarSegundos(driver, 4);
-
-		// Identificación del archivo
-
-		File file = new File(filePath + "\\" + fileName);
-
-		// Instanciar el objeto archivo
-
-		FileInputStream inputStream = new FileInputStream(file);
-
-		Workbook libro = new XSSFWorkbook(inputStream); // Instanciar un libro de trabajo; 
-
-		// Read excel sheet by sheet name
-
-		Sheet sheet = libro.getSheet(sheetName);
-	
-
-		// Get the current count of rows in excel file
-
-		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-
-		// Get the first row from the sheet
-
-		Row row = sheet.getRow(0);
-
-		// Create a new row and append it at last of sheet
-
-		Row newRow = sheet.createRow(rowCount + 1);
-
-		// Create a loop over the cell of newly created Row
-
-		for (int j = 0; j < row.getLastCellNum(); j++) {
-
-			// Fill data in row
-
-			Cell cell = newRow.createCell(j);
-
-			cell.setCellValue(consulta);
-		}
-
-		// Close input stream
-
-		inputStream.close();
-
-		// Create an object of FileOutputStream class to create write data in excel file
-
-		FileOutputStream outputStream = new FileOutputStream(file);
-
-		// write data in the excel file
-
-		libro.write(outputStream);
-
-		// close output stream
-
-		outputStream.close();
-
+		//driver.findElement(By.xpath("//*[@id=\"results-visualization-bar-position\"]/results-visualization-bar/visualization-module-touch/div/div[2]/p[1]/span/span/label/span")).click();
 	}
+	
+	public void crearExcel() throws IOException {
+		
+		esperarSegundos(driver, 4);
+		
+		String[] precios = new String [7];
+		String[] aerolinea = new String [7];
+		
+		precios[0] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[1]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText();
+		precios[1] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[2]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText();
+		precios[2] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[3]/span[1]/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText();
+		precios[3] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[4]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText();
+		precios[4] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[5]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText();
+		precios[5] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[6]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText();
+		precios[6] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[7]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]")).getText(); 
+
+		aerolinea[0] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[1]/span/cluster/div/div/span/div/div/span[1]/route-choice/ul/li[1]/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();
+		aerolinea[1] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[2]/span/cluster/div/div/span/div/div/span[1]/route-choice/ul/li/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();
+		aerolinea[2] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[3]/span[1]/cluster/div/div/span/div/div/span[1]/route-choice/ul/li[1]/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();
+		aerolinea[3] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[4]/span/cluster/div/div/span/div/div/span[1]/route-choice/ul/li[1]/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();	
+		aerolinea[4] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[5]/span/cluster/div/div/span/div/div/span[1]/route-choice/ul/li/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();
+		aerolinea[5] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[6]/span/cluster/div/div/span/div/div/span[1]/route-choice/ul/li/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();
+		aerolinea[6] = driver.findElement(By.xpath("//*[@id=\"clusters\"]/span[7]/span/cluster/div/div/span/div/div/span[1]/route-choice/ul/li/route/itinerary/div/span/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]")).getText();
+		
+		archivoExcel.EscribirArchivoExcel("D:\\natalia\\Documents\\Automatizacion\\Reto 2", "Resultado.xlsx", "Vuelos", precios);
+		
+	}
+
+
 
 
 }

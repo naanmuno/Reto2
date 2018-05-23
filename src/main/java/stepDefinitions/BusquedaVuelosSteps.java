@@ -42,13 +42,13 @@ public class BusquedaVuelosSteps {
 		buscarVuelo.clickEnVuelos();
 
 	}
-	@And ("el usuario ingresa origen")
-	public void ingresoOrigen() {
-		buscarVuelo.ingresoCiudadOrigen("Medellín, Colombia");		
+	@And ("^el usuario ingresa origen (.*)$")
+	public void ingresoOrigen(String origen) {
+		buscarVuelo.ingresoCiudadOrigen(origen);		
 	}
-	@And ("ingresa destino")
-	public void ingresoDestino() {
-		buscarVuelo.ingresoCiudadDestino("Cartagena de Indias, Bolívar, Colombia");
+	@And ("^ingresa destino (.*)$")
+	public void ingresoDestino(String Destino) {
+		buscarVuelo.ingresoCiudadDestino(Destino);
 	}
 	
 	@And ("usuario ingresa fecha partida")
@@ -59,48 +59,27 @@ public class BusquedaVuelosSteps {
 	public void seleccionaFechaRegreso() {
 		buscarVuelo.seleccionarFechaRegreso();
 	}
-	@And ("el usuario ingresa numero de adultos")
-	public void ingresoNumeroAdultos() {
-		buscarVuelo.seleccionarNumeroAdultos();
+	@And ("^el usuario ingresa numero de adultos (.*)$")
+	public void ingresoNumeroAdultos(String NroAdultos) {
+		buscarVuelo.seleccionarNumeroAdultos(NroAdultos);
 	}
 	@And ("usuario da click en buscar")
 	public void clickBuscar() {
 		buscarVuelo.clickBuscarVuelos();
 	}
+	
+	@And ("usuario ordena vuelos")
+	public void ordenarVuelos() {
+		listaVuelos.ordenarPorPrecio();
+	}
+	
 	@And ("se exporta resultado a excel")
 	public void exportaResultado() throws IOException {
+		listaVuelos.crearExcel();
 
-		//String[] consulta = new String[7];
-
-//		consulta[0] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[1]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-//		consulta[1] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[2]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-//		consulta[2] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[3]/span[1]/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-//		consulta[3] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[4]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-//		consulta[4] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[5]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-//		consulta[5] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[6]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-//		consulta[6] = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[7]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText(); 
+	//String consulta = "Hola Mundo";
 		
-//		String consulta = driver.findElement(By.xpath(
-//				"//*[@id=\"clusters\"]/span[1]/span/cluster/div/div/span/fare/span/span/div[1]/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]"))
-//				.getText();
-		
-		String consulta = "Hola Mundo";
-		
-		listaVuelos.EscribirExcel("D:\\natalia\\Documents\\Automatizacion\\Reto 2", "Resultado.xlsx", "Vuelos", consulta);
+		//listaVuelos.crearExcel("D:\\natalia\\Documents\\Automatizacion\\Reto 2", "Resultado.xlsx", "Vuelos", consulta);
 	}
 	
 	@Then ("se marca en verde el mas economico")

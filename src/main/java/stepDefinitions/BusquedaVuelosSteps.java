@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -30,6 +31,11 @@ public class BusquedaVuelosSteps {
 		buscarVuelo = new BusquedaVuelosPage(driver);
 		listaVuelos = new ListadoVuelosPage(driver);
 
+	}
+	
+	@After
+	public void TearDown() {
+		driver.quit();
 	}
 	
 	@Given ("usuario esta en la pagina de despegar")
@@ -77,9 +83,6 @@ public class BusquedaVuelosSteps {
 	public void exportaResultado() throws IOException {
 		listaVuelos.crearExcel();
 
-	//String consulta = "Hola Mundo";
-		
-		//listaVuelos.crearExcel("D:\\natalia\\Documents\\Automatizacion\\Reto 2", "Resultado.xlsx", "Vuelos", consulta);
 	}
 	
 	@Then ("se marca en verde el mas economico")

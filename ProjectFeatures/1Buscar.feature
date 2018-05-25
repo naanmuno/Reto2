@@ -2,7 +2,7 @@
 Feature: Busqueda tiquetes en despegar
 		Yo como usuario de despegar
 		quiero poder buscar tiquetes baratos
-		para viajar a cartagena
+		para viajar a cartagena desde medellin
 		
 
 Scenario Outline: Busqueda de diez tiquetes baratos

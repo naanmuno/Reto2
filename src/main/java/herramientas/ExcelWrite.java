@@ -27,10 +27,9 @@ public class ExcelWrite {
 	 
 	public void WriteExcel(String[][] precios) {
 		
-		//cabecera de la hoja de excel
+		//Titulos de la primera fila
 		String [] header= new String[]{"Precio", "Aerolinea"};
 
-		
 		//Generar los datos para el archivo
 		for(int i = 0; i <= precios.length; i++) {
 			XSSFRow row=hoja1.createRow(i);

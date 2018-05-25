@@ -69,11 +69,6 @@ public class ListadoVuelosPage {
 		
 	}
 	
-	public void marcarEconomico() {
-		
-		
-	}
-
 
 
 

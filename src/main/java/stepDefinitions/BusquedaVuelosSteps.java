@@ -22,7 +22,7 @@ public class BusquedaVuelosSteps {
 	
 	private WebDriver driver;
 	BusquedaVuelosPage buscarVuelo; 
-	ListadoVuelosPage listaVuelos;
+	ListadoVuelosPage resultadoVuelos;
 	
 	@Before
 	public void setUp(){
@@ -30,7 +30,7 @@ public class BusquedaVuelosSteps {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		buscarVuelo = new BusquedaVuelosPage(driver);
-		listaVuelos = new ListadoVuelosPage(driver);
+		resultadoVuelos = new ListadoVuelosPage(driver);
 
 	}
 	
@@ -77,12 +77,12 @@ public class BusquedaVuelosSteps {
 	
 	@And ("usuario ordena vuelos")
 	public void ordenarVuelos() {
-		listaVuelos.ordenarPorPrecio();
+		resultadoVuelos.ordenarPorPrecio();
 	}
 	
 	@Then ("se exporta resultado a excel y marca el valor mas economico")
 	public void exportaResultado() throws IOException {
-		listaVuelos.crearExcel();
+		resultadoVuelos.crearExcel();
 	}
 	
 	@When("selecciona la opcion de vuelos")

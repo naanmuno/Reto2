@@ -14,8 +14,8 @@ Scenario Outline: Busqueda de diez tiquetes baratos
 		And el usuario ingresa numero de adultos <nro_pers_adultas>
 		And usuario da click en buscar
 		And usuario ordena vuelos
-		And se exporta resultado a excel
-		Then se marca en verde el mas economico
+		Then se exporta resultado a excel y marca el valor mas economico
+	
 		
 		Examples: 
       | origen   | destino   | nro_pers_adultas |

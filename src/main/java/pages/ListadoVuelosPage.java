@@ -39,7 +39,7 @@ public class ListadoVuelosPage {
 	
 	public void crearExcel() throws IOException {
 		
-		esperarSegundos(driver, 4);
+		esperarSegundos(driver, 7);
 		
 		String[][] precios = new String [7][7];
 
@@ -66,6 +66,10 @@ public class ListadoVuelosPage {
 
 		
 		excel.WriteExcel(precios);
+		
+	}
+	
+	public void marcarEconomico() {
 		
 		
 	}

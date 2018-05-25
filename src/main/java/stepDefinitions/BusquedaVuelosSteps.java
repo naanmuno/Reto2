@@ -79,16 +79,11 @@ public class BusquedaVuelosSteps {
 		listaVuelos.ordenarPorPrecio();
 	}
 	
-	@And ("se exporta resultado a excel")
+	@Then ("se exporta resultado a excel y marca el valor mas economico")
 	public void exportaResultado() throws IOException {
 		listaVuelos.crearExcel();
 
+
 	}
-	
-	@Then ("se marca en verde el mas economico")
-	public void marcacionMasEconomico() {
-		
-	}
-	
 
 }

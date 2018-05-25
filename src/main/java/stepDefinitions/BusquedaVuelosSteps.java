@@ -15,6 +15,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.BusquedaVuelosPage;
 import pages.ListadoVuelosPage;
+import static org.junit.Assert.*;
 
 
 public class BusquedaVuelosSteps {
@@ -82,8 +83,20 @@ public class BusquedaVuelosSteps {
 	@Then ("se exporta resultado a excel y marca el valor mas economico")
 	public void exportaResultado() throws IOException {
 		listaVuelos.crearExcel();
-
-
+	}
+	
+	@When("selecciona la opcion de vuelos")
+	public void seleccionarOpcion() {
+		buscarVuelo.cerrarVentana();
+		buscarVuelo.clickEnVuelos();
+	
 	}
 
+	@Then ("sale mensaje de error")
+	public void validacionMensajeErrorCiudad(){
+		String resultado =	buscarVuelo.mensajeErrorCiudad();
+		System.out.print(resultado);
+		assertEquals("El destino debe ser diferente del origen", resultado);
+	}
+	
 }

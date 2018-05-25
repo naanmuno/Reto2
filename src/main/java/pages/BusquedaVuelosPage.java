@@ -85,4 +85,10 @@ public class BusquedaVuelosPage {
 	   driver.findElement(By.xpath("//*[@id=\"searchbox-sbox-all-boxes\"]/div[2]/div/div/div[3]/div[2]/div[4]/div/a/em")).click();
    }
 
+public String mensajeErrorCiudad() {
+	
+	String resultado = driver.findElement(By.xpath("//*[@id=\"searchbox-sbox-all-boxes\"]/div[2]/div/div/div[3]/div[2]/div[1]/div[1]/div/div[2]/div/div/div/div/span[2]")).getText();
+	return resultado;
+}
+
 }

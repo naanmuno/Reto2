@@ -3,21 +3,26 @@ RETO 2 : BÚSQUEDA DE VUELOS EN DESPEGAR
 
 El resumen de codificación
 
+- Inicialmente se crea el proyecto como GradleSTS y se importan todas las dependencias. Allí se importan las librerías de selenium
+- Después se crea la carpeta ProjectFeatures donde contendrá el archivo con las historias de Usuario en Gherkin y se hace referencia a los paquetes que contendrá el código java para cada historia de usuario
+- Se crean las carpetas de Herramientas, pages, runners y stepDefinitions.
+- En la clase de steps se hace la asociación de cada línea de la historia de usuario con 
+
 El framework
 
-	Selenium
+
 
 compilador
 
 patrones desarrollo
 
-	BDD
+- Como patrón de desarrollo se usa BDD (behavior driven development)
 
 prácticas de automatización
 
 Herramienta de automatización utilizado 
 
-	Eclipse	
+- El IDE usado es Eclipse con la herramienta de automatización de gradle STS y las librerías de Selenium
 
 Estrategia de automatización
 
